@@ -1,17 +1,21 @@
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.InboxEmailPage;
+import pages.LoginPage;
 
-public class SendMailTests {
+/**
+ * Tests are for sending messages
+ */
+public class SendMailTests extends BaseTest {
 
-    public WebDriver driver;
-
-    @BeforeMethod
-    public void initWebDriver(){
-        driver = WebDriverFactory.getWebDriver("chrome");
-    }
-
+    /**
+     * Positive test is for sending message
+     */
     @Test
-    public void sendNewEmail(){
+    public void sendNewEmail() {
+        LoginPage
+                .getPage(driver)
+                .openPage()
+                .getAuthorization(LoginPage.USER_LOGIN, LoginPage.USER_SECRET, LoginPage.DOMAIN_MAIL_RU)
+                .waitForAnyElement(InboxEmailPage.newMessageButton, 4);
     }
 }

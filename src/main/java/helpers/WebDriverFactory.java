@@ -1,3 +1,5 @@
+package helpers;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,6 +20,7 @@ public class WebDriverFactory {
 
     /**
      * Get web driver by a browser name
+     * @param browserName - name of a browser which we will run (e.g. 'chrome', 'firefox')
      */
     public static WebDriver getWebDriver(String browserName) {
         initPropertiesForWebDriver();
@@ -32,7 +35,7 @@ public class WebDriverFactory {
     }
 
     /**
-     * Singliton for ChromeDriver
+     * Singleton for ChromeDriver
      */
     private static WebDriver getChromeDriver() {
         if (chromeDriver == null) {
@@ -41,7 +44,7 @@ public class WebDriverFactory {
     }
 
     /**
-     * Singliton for GeckoDriver
+     * Singleton for GeckoDriver
      */
     private static WebDriver getFireFosDriver() {
         if (fireFoxDriver == null) {
