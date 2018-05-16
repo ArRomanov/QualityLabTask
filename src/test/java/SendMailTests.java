@@ -2,9 +2,7 @@ import helpers.Email;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-import static helpers.Data.CURRENT_USER_EMAIL_ADDRESS;
-import static helpers.Data.USER_LOGIN;
-import static helpers.Data.USER_SECRET;
+import static helpers.Data.*;
 import static pages.AfterSendMessagePage.GO_TO_INBOX_BUTTON;
 import static pages.AfterSendMessagePage.TAB_TITLE;
 import static pages.InboxEmailPage.NEW_MESSAGE_BUTTON;

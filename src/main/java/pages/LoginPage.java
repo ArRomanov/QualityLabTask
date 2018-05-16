@@ -1,6 +1,5 @@
 package pages;
 
-import helpers.Urls;
 import org.openqa.selenium.WebDriver;
 
 import static helpers.Urls.MAIN_URL;

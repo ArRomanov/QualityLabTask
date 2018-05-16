@@ -20,6 +20,7 @@ public class WebDriverFactory {
 
     /**
      * Get web driver by a browser name
+     *
      * @param browserName - name of a browser which we will run (e.g. 'chrome', 'firefox')
      */
     public static WebDriver getWebDriver(String browserName) {
@@ -39,8 +40,9 @@ public class WebDriverFactory {
      */
     private static WebDriver getChromeDriver() {
         if (chromeDriver == null) {
-            return new ChromeDriver();
-        } else return chromeDriver;
+            chromeDriver = new ChromeDriver();
+        }
+        return chromeDriver;
     }
 
     /**
@@ -48,8 +50,9 @@ public class WebDriverFactory {
      */
     private static WebDriver getFireFosDriver() {
         if (fireFoxDriver == null) {
-            return new FirefoxDriver();
-        } else return fireFoxDriver;
+            fireFoxDriver = new FirefoxDriver();
+        }
+        return fireFoxDriver;
     }
 
     /**
