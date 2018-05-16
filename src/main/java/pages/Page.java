@@ -61,9 +61,9 @@ public class Page {
      * Waiting for any element
      *
      * @param elementXpath - element's xpath
-     * @param seconds - count of seconds for waiting for
+     * @param seconds      - count of seconds for waiting for
      */
-    public Page waitForAnyElement(String elementXpath, int seconds){
+    public Page waitForAnyElement(String elementXpath, int seconds) {
         WebDriverWait wait = new WebDriverWait(driver, seconds);
         wait.until(ExpectedConditions.presenceOfElementLocated(xpath(elementXpath)));
         return this;
@@ -82,5 +82,31 @@ public class Page {
         return this;
     }
 
+    /**
+     * Switching to another frame (e.g. iframe)
+     *
+     * @param numOfFrame - element's xpath
+     */
+    public Page switchToFrame(int numOfFrame) {
+        driver.switchTo().frame(numOfFrame);
+        return this;
+    }
 
+    /**
+     * Switch to default frame
+     */
+    public Page switchToDefaultFrame() {
+        driver.switchTo().defaultContent();
+        return this;
+    }
+
+    /**
+     * Matching title of tab
+     *
+     * @param matchText - text for matching
+     */
+    public Page checkTitle(String matchText) {
+        Assert.assertEquals(driver.getTitle(), matchText);
+        return this;
+    }
 }

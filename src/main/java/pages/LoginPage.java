@@ -3,21 +3,20 @@ package pages;
 import helpers.Urls;
 import org.openqa.selenium.WebDriver;
 
+import static helpers.Urls.MAIN_URL;
+
 /**
  * Page of authorization
  */
 public class LoginPage extends Page {
 
-    public static final String USER_LOGIN = "testovyjy";
-    public static final String USER_SECRET = "Password0";
-
     public static final String DOMAIN_MAIL_RU = "@mail.ru";
     public static final String DOMAIN_BK_RU = "@bk.ru";
 
-    private String loginFieldXpath = "//input[@id='mailbox:login']";
-    private String secretFieldXpath = "//input[@id='mailbox:password']";
-    private String dropDownDomainXpath = "//select[@id='mailbox:domain']";
-    private String authButtonXpath = "//input[@value='Войти']";
+    public static final String LOGIN_FIELD_XPATH = "//input[@name='login']";
+    public static final String PSWD_FIELD_XPATH = "//input[@name='password']";
+    public static final String DROPDOWN_DOMAIN_XPATH = "//select[@id='mailbox:domain']";
+    public static final String AUTH_BUTTON_XPATH = "//input[@value='Войти']";
 
     private LoginPage(WebDriver driver) {
         super(driver);
@@ -34,24 +33,35 @@ public class LoginPage extends Page {
      * Opening of a page for auth
      */
     public LoginPage openPage() {
-        super.driver.get(Urls.MAIN_URL);
+        super.driver.get(MAIN_URL);
         return this;
     }
 
     /**
      * Authorization in mail
-     * @param login - user's login
+     *
+     * @param login    - user's login
      * @param password - user's password
-     * @param domain - mail's domain (You can use constants from this class)
+     * @param domain   - mail's domain (You can use constants from this class)
      */
     public InboxEmailPage getAuthorization(String login, String password, String domain) {
         super
-                .setTextInField(loginFieldXpath, login)
-                .setTextInField(secretFieldXpath, password)
-                .selectDropDown(dropDownDomainXpath, domain)
-                .clickLMB(authButtonXpath);
-        return new InboxEmailPage(driver);
+                .setTextInField(LOGIN_FIELD_XPATH, login)
+                .setTextInField(PSWD_FIELD_XPATH, password)
+                .selectDropDown(DROPDOWN_DOMAIN_XPATH, domain)
+                .clickLMB(AUTH_BUTTON_XPATH);
+        return InboxEmailPage.getPage(super.driver);
     }
 
-
+    /**
+     * Waiting for any element (overridden method from parent page)
+     *
+     * @param elementXpath - element's xpath
+     * @param seconds      - count of seconds for waiting for
+     */
+    @Override
+    public LoginPage waitForAnyElement(String elementXpath, int seconds) {
+        super.waitForAnyElement(elementXpath, seconds);
+        return this;
+    }
 }
